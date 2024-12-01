@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="/static/img/favic.ico" type="image/x-icon"> 
+    <title>Login</title>
+    <link rel="stylesheet" href="/static/css/register.css">
+    <style>
+        .popup {
+            position: fixed;
+            z-index: 9999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .popup-content {
+            background-color: #e0d9c7b3;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            width: 300px;
+            position: relative;
+        }
+
+        .close {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            color: #aaa;
+            font-size: 20px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close:hover {
+            color: black;
+        }
+
+        .popup p {
+            margin: 10px 0;
+            color: #333;
+        }
+    </style>
+</head>
+
+<body>
+        <div class="form_section">
+            <form action="/login" method="POST">
+                <h1>Login</h1>
+                <input id="username" autocomplete="off" autofocus name="username" placeholder="username" required type="text">
+                <br>
+                <input id="password" autocomplete="off" name="password" placeholder="password" required type="password">
+                <br>
+                <button class="btn_LOG" type="submit" id="loginButton">Login</button>
+            </form>
+            <div class="register-section">
+                <div class="text">Don’t have an account?</div>
+                <a href="/register">Register</a>
+            </div>
+        </div>
+    <div id="errorPopup" class="popup" style="display:none;">
+        <div class="popup-content">
+            <span class="close" onclick="closePopup()">&times;</span>
+            <p id="popupMessage"></p>
+        </div>
+    </div>
+
+    {% if error %}
+    <script>
+        document.getElementById("popupMessage").innerText = "Incorrect login or password. Try again!";
+        document.getElementById("errorPopup").style.display = "flex"; 
+    </script>
+    {% endif %}
+
+    <script src="/static/js/login.js"></script>
+</body>
+
+</html>

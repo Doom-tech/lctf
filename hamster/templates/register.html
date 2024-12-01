@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="/static/img/favic.ico" type="image/x-icon"> 
+    <title>Register</title>
+    <link href="/static/css/register.css" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/popup.css">
+    <style>
+        .popup {
+            position: fixed;
+            z-index: 9999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .popup-content {
+            background-color: #e0d9c7b3;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            width: 300px;
+            position: relative;
+        }
+
+        .close {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            color: #aaa;
+            font-size: 20px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close:hover {
+            color: black;
+        }
+
+        .popup p {
+            margin: 10px 0;
+            color: #333;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="form_section">
+        <form action="/register" method="POST">
+            <h1>Registration</h1>
+            <input id="username" autocomplete="off" autofocus name="username" placeholder="username" required type="text">
+            <br>
+            <input id="password" autocomplete="off" name="password" placeholder="password" required type="password">
+            <br>
+            <input id="confirm_password" autocomplete="off" name="confirm_password" placeholder="repeat password" required type="password" oninput="validatePassword()">
+            <br>
+            <button id="btn_log" class="btn_LOG" type="submit" value="Sign Up">Register</button>
+            <span id="message"></span>
+        </form>
+
+        <div class="register-section">
+            <div class="text">Have an account? </div>
+            <a href="/">Login</a>
+        </div>
+    </div>
+    <div id="errorPopup" class="popup" style="display:none;">
+        <div class="popup-content">
+            <span class="close" onclick="closePopup()">&times;</span>
+            <p id="popupMessage"></p>
+        </div>
+    </div>
+
+    {% if error %}
+    <script>
+        document.getElementById("popupMessage").innerText = "Can not register with this username!";
+        document.getElementById("errorPopup").style.display = "flex";
+    </script>
+    {% endif %}
+
+    <script>
+        document.querySelector(".form_section form").addEventListener('submit', (e) => {
+            const password = document.getElementById("password").value;
+            const confirmPassword = document.getElementById("confirm_password").value;
+            const message = document.getElementById('message');
+
+            if (confirmPassword !== password) {
+                e.preventDefault();
+                message.innerText = "Passwords do NOT match";
+            } else {
+                document.getElementById("confirm_password").disabled = true;
+                message.innerText = "";
+            }
+        });
+
+        function validatePassword() {
+            const password = document.getElementById("password").value;
+            const confirmPassword = document.getElementById("confirm_password").value;
+            const message = document.getElementById('message');
+
+            if (confirmPassword !== password) {
+                message.innerText = "Passwords do NOT match";
+            } else {
+                message.innerText = "";
+            }
+        }
+    </script>
+    <script src="/static/js/register.js"></script>
+</body>
+
+</html>

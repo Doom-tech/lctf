@@ -1,0 +1,40 @@
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="icon" href="/static/img/favic.ico" type="image/x-icon"> 
+        <title>Scoreboard</title>
+        <link href="/static/css/scoreboard.css" rel="stylesheet"> 
+    </head>
+    <body>
+        <header>
+            <img src="/static/img/mctf.png" alt="MCTF Logo" class="logo">
+            <nav>
+                <button class="nav-btn game-btn" onclick="window.location.href='/game'">Game</button>
+                <button class="nav-btn profile-btn" onclick="window.location.href='/profile'">Profile</button>
+                <button class="nav-btn logout-btn" onclick="window.location.href='/logout'">Log Out</button>
+            </nav>
+        </header>
+        <h1>Scoreboard</h1>
+        <table id="usersTable">
+            <thead>
+                <tr>
+                    <th>Top</th>
+                    <th>Username</th>
+                    <th>Score</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for s in score %}
+                <tr>
+                    <td>{{loop.index}}</td>
+                    <td>{{s[0]}}</td>
+                    <td>{{s[1]}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <script src="/static/js/scoreboard.js"></script>
+    </body>
+    </html>

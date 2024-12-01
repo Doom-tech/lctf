@@ -1,0 +1,10 @@
+version: "3"
+services:
+  mlang:
+    build: ./
+    ports:
+      - 7878:443
+    volumes:
+      - ./prog:/var/www/html/:rw
+      - ./data:/data
+    restart: unless-stopped

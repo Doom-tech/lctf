@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="/static/img/favic.ico" type="image/x-icon"> 
+    <title>Game</title>
+    <link href="/static/css/game.css" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <img src="/static/img/mctf.png" alt="MCTF Logo" class="logo">
+        <nav>
+            <button class="nav-btn score-btn" onclick="window.location.href='/scoreboard'">Scoreboard</button>
+            <button class="nav-btn profile-btn" onclick="window.location.href='/profile'">Profile</button>
+            <button class="nav-btn logout-btn" onclick="window.location.href='/logout'">Log Out</button>
+        </nav>
+    </header>
+    <div class="game_cont">
+        <div class="game_section">
+            <p id="username">{{username}}</p>
+            <p>Your score: <span id="score">{{score}}</span></p>
+            <button class="btn_CLICK" id="gameButton" type="button">
+                <img src="/static/img/bag.png" alt="Gift Bag" class="bag-image">
+            </button>
+        </div>
+    </div>
+    <script src="/static/js/game.js"></script>
+</body>
+</html>

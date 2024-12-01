@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="/static/img/favic.ico" type="image/x-icon"> 
+    <title>Profile</title>
+    <link href="/static/css/profile.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    
+</head>
+<body>
+    <header>
+        <img src="/static/img/mctf.png" alt="MCTF Logo" class="logo">
+        <nav>
+            <button class="nav-btn score-btn" onclick="window.location.href='/scoreboard'">Scoreboard</button>
+            <button class="nav-btn game-btn" onclick="window.location.href='/game'">Game</button>
+            <button class="nav-btn logout-btn" onclick="window.location.href='/logout'">Log Out</button>
+        </nav>
+    </header>
+    <div class="profile_section">
+        <div class="profile_photo">
+            <p id="username">{{username}}</p>
+            <img src="/static/img/{{avatar}}.jpg" alt="Avatar" id="profile_image">
+            <button id="change_img" class="nav-btn">Change photo</button>
+            <form action="update_recovery" method="POST" class="recovery_code">
+                <div class="label-container">
+                    <label for="recovery_code_input">
+                        Secret Recovery Code
+                        <div class="question-icon">
+                            <i class="fa-regular fa-circle-question"></i>
+                            <div class="recovery-code-popup">You can write any value here that will serve as the account recovery code. If you lose access to your account, the administrator can request this value to confirm that you are the owner of the account.</div>
+                        </div>
+                    </label>
+                    <textarea id="recovery_code_input" name="recovery_code" rows="4" placeholder="Enter the recovery secret code" maxlength="50">{{recovery_code}}</textarea>
+                </div>             
+                <div class="button-container">
+                    <button type="submit" class="submit-btn">Submit Recovery Code</button>
+                </div>             
+            </form>    
+            <div class="score">Your score: <span id="score">{{score}}</span></div>
+        </div>
+        </div>
+    <div class="image-options" id="image-options">
+        <div class="image-previews">
+            <img src="/static/img/2.jpg" alt="Avatar 2">
+            <img src="/static/img/3.jpg" alt="Avatar 3">
+            <img src="/static/img/4.jpg" alt="Avatar 4">
+        </div>
+        <div class="image-actions">
+            <button id="save-image" class="nav-btn">Save</button>
+            <button id="cancel-image" class="nav-btn">Cancel</button>
+        </div>
+    </div>
+    <form id="image-form" action="/update_avatar" method="POST" style="display: none;">
+        <input type="hidden" name="id" value="{{user_id}}"> 
+        <input type="hidden" name="avatar" id="image-input" value="{{avatar}}">
+    </form>    
+    <script src="/static/js/profile.js"></script>
+</body>
+</html>
